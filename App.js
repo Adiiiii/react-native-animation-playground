@@ -2,24 +2,11 @@ import React from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  interpolate,
 } from 'react-native-reanimated';
-import {
-  Button,
-  Text,
-  View,
-  StyleSheet,
-  SafeAreaView,
-  Dimensions,
-  TouchableHighlight,
-} from 'react-native';
-const DeviceWidth = Dimensions.get('screen').width;
-const DeviceHeight = Dimensions.get('screen').height;
+import {Text, StyleSheet, SafeAreaView} from 'react-native';
 
 function App() {
   const opacity = useSharedValue(1);
-  const BOX_WIDTH = useSharedValue(50);
-  const BOX_HEIGHT = useSharedValue(50);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -38,7 +25,7 @@ function App() {
           opacity.value = Animated.withRepeat(
             Animated.withTiming(0, {
               duration: 2000,
-            },),
+            }),
             -1,
             true,
           );
@@ -85,5 +72,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
-// offset.value = withSpring(Math.random());
