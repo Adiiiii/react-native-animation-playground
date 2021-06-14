@@ -10,7 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-const Home = () => {
+const LoaderAnimation = () => {
   const SHARED = useSharedValue(0);
   const circleOne = useAnimatedStyle(() => ({
     transform: [{scale: interpolate(SHARED.value, [0, 1], [1, 3], 'clamp')}],
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default LoaderAnimation;
