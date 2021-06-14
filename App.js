@@ -1,74 +1,71 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
 import Animated, {
-  useSharedValue,
+  Easing,
+  interpolate,
   useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
 } from 'react-native-reanimated';
-import {Text, StyleSheet, SafeAreaView} from 'react-native';
 
-function App() {
-  const opacity = useSharedValue(1);
+const Home = () => {
+  const SHARED = useSharedValue(0);
+  const circleOne = useAnimatedStyle(() => ({
+    transform: [{scale: interpolate(SHARED.value, [0, 1], [1, 3], 'clamp')}],
+  }));
+  const circleTwo = useAnimatedStyle(() => ({
+    transform: [{scale: interpolate(SHARED.value, [1, 2], [1, 3], 'clamp')}],
+  }));
+  const circleThree = useAnimatedStyle(() => ({
+    transform: [{scale: interpolate(SHARED.value, [2, 3], [1, 3], 'clamp')}],
+  }));
 
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      // flex: opacity.value,
-    };
-  });
+  useEffect(() => {
+    SHARED.value = withRepeat(
+      withSequence(
+        withTiming(1, {duration: 1000, easing: Easing.ease}),
+        withTiming(2, {duration: 1000, easing: Easing.ease}),
+        withTiming(3, {duration: 1000, easing: Easing.ease}),
+        withTiming(0, {duration: 1000, easing: Easing.ease}),
+      ),
+      -1,
+      true,
+    );
+  }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Animated.View style={[styles.box, animatedStyles]}>
-        <Text style={styles.Letter}>F</Text>
-      </Animated.View>
-      <Text
-        style={styles.FixedButton}
-        onPress={() => {
-          opacity.value = Animated.withRepeat(
-            Animated.withTiming(0, {
-              duration: 2000,
-            }),
-            -1,
-            true,
-          );
-        }}
-        title="Move">
-        lo
-      </Text>
-    </SafeAreaView>
+    <View style={styles.Container}>
+      <Animated.View style={[styles.Circle, styles.one, circleOne]} />
+      <Animated.View style={[styles.Circle, styles.two, circleTwo]} />
+      <Animated.View style={[styles.Circle, styles.three, circleThree]} />
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  Container: {
+    padding: 70,
     flex: 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
+    flexDirection: 'row',
   },
-  box: {
-    // width: 50,
-    // height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'orange',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 30,
+  Circle: {
+    width: 20,
+    height: 20,
+    borderRadius: 20,
   },
-  Letter: {
-    fontSize: 30,
-    fontFamily: 'Roboto',
-    color: 'white',
-    fontWeight: 'bold',
+  one: {
+    backgroundColor: '#af1111',
   },
-  FixedButton: {
-    position: 'absolute',
-    bottom: 10,
-    backgroundColor: '#ff7744',
-    width: 50,
-    borderWidth: 1,
-    textAlign: 'center',
-    alignItems: 'center',
+  two: {
+    backgroundColor: '#afaaff',
+  },
+  three: {
+    backgroundColor: '#aa1166',
   },
 });
 
-export default App;
+export default Home;
