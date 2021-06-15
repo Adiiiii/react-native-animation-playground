@@ -5,7 +5,6 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSequence,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 
@@ -13,13 +12,13 @@ const HamburgerIcon = ({navigation}) => {
   const SHARED = useSharedValue(0);
 
   const animatedStyles = useAnimatedStyle(() => ({
-    height: interpolate(SHARED.value, [0, 1], [24, 15]),
+    transform: [{rotateZ: `${SHARED.value * 180}deg`}],
   }));
 
   const openDrawer = () => {
     SHARED.value = withSequence(
-      withTiming(1, {duration: 200}),
-      withTiming(0, {duration: 200}),
+      withTiming(1, {duration: 400}),
+      withTiming(0, {duration: 400}),
     );
     navigation.openDrawer();
   };
