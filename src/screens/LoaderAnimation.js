@@ -5,33 +5,61 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withRepeat,
-  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 
 const LoaderAnimation = () => {
-  const SHARED = useSharedValue(0);
+  const FIRST = useSharedValue(0);
+  const SECOND = useSharedValue(0);
+  const THIRD = useSharedValue(0);
   const circleOne = useAnimatedStyle(() => ({
-    transform: [{scale: interpolate(SHARED.value, [0, 1], [1, 3], 'clamp')}],
+    transform: [
+      {translateY: interpolate(FIRST.value, [0, 1], [0, -50], 'clamp')},
+    ],
   }));
   const circleTwo = useAnimatedStyle(() => ({
-    transform: [{scale: interpolate(SHARED.value, [1, 2], [1, 3], 'clamp')}],
+    transform: [
+      {translateY: interpolate(SECOND.value, [0, 1], [0, -50], 'clamp')},
+    ],
   }));
   const circleThree = useAnimatedStyle(() => ({
-    transform: [{scale: interpolate(SHARED.value, [2, 3], [1, 3], 'clamp')}],
+    transform: [
+      {translateY: interpolate(THIRD.value, [0, 1], [0, -50], 'clamp')},
+    ],
   }));
 
   useEffect(() => {
-    SHARED.value = withRepeat(
-      withSequence(
-        withTiming(1, {duration: 1000, easing: Easing.ease}),
-        withTiming(2, {duration: 1000, easing: Easing.ease}),
-        withTiming(3, {duration: 1000, easing: Easing.ease}),
-        withTiming(0, {duration: 1000, easing: Easing.ease}),
-      ),
+    FIRST.value = withRepeat(
+      withTiming(1, {
+        duration: 500,
+        easing: Easing.ease,
+      }),
       -1,
       true,
+    );
+    SECOND.value = withDelay(
+      150,
+      withRepeat(
+        withTiming(1, {
+          duration: 500,
+          easing: Easing.ease,
+        }),
+        -1,
+        true,
+      ),
+    );
+    THIRD.value = withDelay(
+      300,
+      withRepeat(
+        withTiming(1, {
+          duration: 500,
+          easing: Easing.ease,
+        }),
+        -1,
+        true,
+      ),
     );
   }, []);
 
@@ -46,8 +74,9 @@ const LoaderAnimation = () => {
 
 const styles = StyleSheet.create({
   Container: {
-    padding: 70,
+    width: 100,
     flex: 1,
+    alignSelf: 'center',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
