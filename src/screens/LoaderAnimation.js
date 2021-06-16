@@ -14,6 +14,9 @@ const LoaderAnimation = () => {
   const FIRST = useSharedValue(0);
   const SECOND = useSharedValue(0);
   const THIRD = useSharedValue(0);
+
+  // in ms
+  const ANIMATION_DURATION = 500;
   const circleOne = useAnimatedStyle(() => ({
     transform: [
       {translateY: interpolate(FIRST.value, [0, 1], [0, -50], 'clamp')},
@@ -33,7 +36,7 @@ const LoaderAnimation = () => {
   useEffect(() => {
     FIRST.value = withRepeat(
       withTiming(1, {
-        duration: 500,
+        duration: ANIMATION_DURATION,
         easing: Easing.ease,
       }),
       -1,
@@ -43,7 +46,7 @@ const LoaderAnimation = () => {
       150,
       withRepeat(
         withTiming(1, {
-          duration: 500,
+          duration: ANIMATION_DURATION,
           easing: Easing.ease,
         }),
         -1,
@@ -54,14 +57,14 @@ const LoaderAnimation = () => {
       300,
       withRepeat(
         withTiming(1, {
-          duration: 500,
+          duration: ANIMATION_DURATION,
           easing: Easing.ease,
         }),
         -1,
         true,
       ),
     );
-  }, []);
+  }, [FIRST, SECOND, THIRD]);
 
   return (
     <View style={styles.Container}>
