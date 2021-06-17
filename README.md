@@ -1,11 +1,18 @@
 # react-native-animation-playground
-Smooth performant animations using react-native-reanimated
+Smooth performant animations using react-native-reanimated.
 
 ## Installation
-
-```bash
-yarn install 
+```sh
+$ yarn install
 ```
-## Run on Android emulator/device
-$ npx react-native run-android
+For Android
+```sh
+$ yarn android
+```
+For ios
+```sh
+$ cd ios && pod install
+$ cd .. && yarn ios
+```
+
 
