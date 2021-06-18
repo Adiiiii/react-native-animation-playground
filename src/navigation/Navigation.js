@@ -10,9 +10,10 @@ const Stack = createStackNavigator();
 export const LoaderAnimationStack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      options={({navigation}) => ({
+      options={({navigation, route}) => ({
         headerLeft: () => <NavHeader navigation={navigation} />,
         headerTransparent: true,
+        headerTitleAlign: 'center',
       })}
       name="Loader Animation"
       component={LoaderAnimation}
@@ -26,6 +27,7 @@ export const CardAnimationStack = () => (
       options={({navigation}) => ({
         headerLeft: () => <NavHeader navigation={navigation} />,
         headerTransparent: true,
+        headerTitleAlign: 'center',
       })}
       name="Card"
       component={CardAnimation}
@@ -38,6 +40,7 @@ export const LoaderAnimation2Stack = () => (
       options={({navigation}) => ({
         headerLeft: () => <NavHeader navigation={navigation} />,
         headerTransparent: true,
+        headerTitleAlign: 'center',
       })}
       name="Another Loader"
       component={LoaderAnimation2}
