@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
+import WrapperWithBackground from '../components/HOCs/WrapperWithBackground';
 
 const CardAnimation = () => {
   const BASE = useSharedValue(0);
@@ -27,28 +28,18 @@ const CardAnimation = () => {
   }, []);
 
   return (
-    <View style={styles.Container}>
-      <Animated.View style={[styles.Card, cardAnimatedStyles]}>
-        <LinearGradient
-          angle={45}
-          colors={['#4c669f', '#3b5998', '#192f6a']}
-          style={styles.linearGradient}>
-          <Text style={styles.Type}>V I S A</Text>
-        </LinearGradient>
-        <Animated.View blurRadius={2} style={[styles.shine, animatedStyles]} />
-      </Animated.View>
-    </View>
+    <Animated.View style={[styles.Card, cardAnimatedStyles]}>
+      <LinearGradient
+        angle={45}
+        colors={['#4c669f', '#3b5998', '#192f6a']}
+        style={styles.linearGradient}>
+        <Text style={styles.Type}>V I S A</Text>
+      </LinearGradient>
+      <Animated.View blurRadius={2} style={[styles.shine, animatedStyles]} />
+    </Animated.View>
   );
 };
 const styles = StyleSheet.create({
-  Container: {
-    flex: 1,
-    width: '100%',
-    overflow: 'hidden',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   Card: {
     overflow: 'hidden',
     width: 250,
@@ -78,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CardAnimation;
+export default WrapperWithBackground(CardAnimation);

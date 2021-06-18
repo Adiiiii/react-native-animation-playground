@@ -9,6 +9,7 @@ import Animated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
+import WrapperWithBackground from '../components/HOCs/WrapperWithBackground';
 
 const LoaderAnimation = () => {
   const FIRST = useSharedValue(0);
@@ -100,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoaderAnimation;
+export default WrapperWithBackground(LoaderAnimation);
