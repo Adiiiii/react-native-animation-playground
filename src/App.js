@@ -19,9 +19,9 @@ export default function App() {
         drawerStyle={{paddingTop: 20}}
         drawerType="back"
         detachInactiveScreens>
-        <Drawer.Screen name="Loader 1" component={LoaderAnimationStack} />
-        <Drawer.Screen name="Loader 2" component={LoaderAnimation2Stack} />
-        <Drawer.Screen name="Card" component={CardAnimationStack} />
+        <Drawer.Screen name="Bouncy Loader" component={LoaderAnimationStack} />
+        <Drawer.Screen name="Boring Loader" component={LoaderAnimation2Stack} />
+        <Drawer.Screen name="Card Animation" component={CardAnimationStack} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
