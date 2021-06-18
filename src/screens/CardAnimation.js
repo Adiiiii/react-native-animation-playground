@@ -17,16 +17,16 @@ const CardAnimation = () => {
 
   const animatedStyles = useAnimatedStyle(() => ({
     //  transform: [{translateX: interpolate(BASE.value, [0, 1], [0, 200])}],
-    left: interpolate(BASE.value, [0, 1], [0, 270]),
-    opacity: interpolate(BASE.value, [0, 1], [0.1, 0.3, 0.1]),
+    left: interpolate(BASE.value, [0.2, 1.2], [0, 270]),
+    opacity: interpolate(BASE.value, [0.2, 1.2], [0.1, 0.3, 0.1]),
   }));
 
   const cardAnimatedStyles = useAnimatedStyle(() => ({
-    transform: [{scale: interpolate(BASE.value, [0, 0.5, 1], [1, 1.1, 1.1])}],
+    transform: [{scale: interpolate(BASE.value, [0, 0.5, 1], [1, 1.2, 1.2])}],
   }));
 
   useEffect(() => {
-    BASE.value = withRepeat(withTiming(1, {duration: 1000}), -1);
+    BASE.value = withRepeat(withTiming(3, {duration: 3000}), -1);
   }, []);
 
   return (
@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
+    borderRadius: 10,
   },
   shine: {
     height: '120%',
