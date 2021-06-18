@@ -1,16 +1,13 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Animated, {
-  Easing,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
-import {withSafeAreaInsets} from 'react-native-safe-area-context';
 
 const CardAnimation = () => {
   const BASE = useSharedValue(0);
@@ -47,7 +44,6 @@ const styles = StyleSheet.create({
   Container: {
     flex: 1,
     width: '100%',
-    borderWidth: 1,
     overflow: 'hidden',
     alignSelf: 'center',
     justifyContent: 'center',

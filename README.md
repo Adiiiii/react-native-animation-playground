@@ -1,5 +1,6 @@
 # react-native-animation-playground
 Smooth performant animations using react-native-reanimated.
+No Assets used, just code + styling ;)
 
 ## Installation
 ```sh
