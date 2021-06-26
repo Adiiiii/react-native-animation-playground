@@ -2,6 +2,7 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
+import {enableScreens} from 'react-native-screens';
 
 import {
   CardAnimationStack,
@@ -10,6 +11,7 @@ import {
 } from './navigation/Navigation';
 
 const Drawer = createDrawerNavigator();
+enableScreens(false);
 
 export default function App() {
   return (
