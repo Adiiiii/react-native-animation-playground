@@ -6,15 +6,22 @@ import CardAnimation from '../screens/CardAnimation';
 import NavHeader from '../components/navHeader/navHeader';
 
 const Stack = createStackNavigator();
+const headerOptions = ({navigation}) => ({
+  headerLeft: () => <NavHeader navigation={navigation} />,
+  headerTransparent: true,
+  headerTitleAlign: 'center',
+  headerTitleStyle: {
+    color: '#351556',
+    textTransform: 'uppercase',
+    letterSpacing: 2,
+    fontWeight: 'bold',
+  },
+});
 
 export const LoaderAnimationStack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      options={({navigation, route}) => ({
-        headerLeft: () => <NavHeader navigation={navigation} />,
-        headerTransparent: true,
-        headerTitleAlign: 'center',
-      })}
+      options={headerOptions}
       name="Loader Animation"
       component={LoaderAnimation}
     />
@@ -24,11 +31,7 @@ export const LoaderAnimationStack = () => (
 export const CardAnimationStack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      options={({navigation}) => ({
-        headerLeft: () => <NavHeader navigation={navigation} />,
-        headerTransparent: true,
-        headerTitleAlign: 'center',
-      })}
+      options={headerOptions}
       name="Card"
       component={CardAnimation}
     />
@@ -37,12 +40,8 @@ export const CardAnimationStack = () => (
 export const LoaderAnimation2Stack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      options={({navigation}) => ({
-        headerLeft: () => <NavHeader navigation={navigation} />,
-        headerTransparent: true,
-        headerTitleAlign: 'center',
-      })}
-      name="Another Loader"
+      options={headerOptions}
+      name="NEVER USE THIS"
       component={LoaderAnimation2}
     />
   </Stack.Navigator>

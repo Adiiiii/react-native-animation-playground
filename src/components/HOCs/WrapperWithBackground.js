@@ -6,7 +6,9 @@ const WrapperWithBackground =
   Component =>
   ({...props}) => {
     return (
-      <LinearGradient colors={['#d9a7c7', '#fffcdc']} style={styles.Container}>
+      <LinearGradient
+        colors={['white', '#dcc3f6', '#dcc3f6']}
+        style={styles.Container}>
         <Component {...props} />
       </LinearGradient>
     );

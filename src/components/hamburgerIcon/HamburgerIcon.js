@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   Bar: {
     width: 20,
     height: 5,
-    backgroundColor: 'black',
+    backgroundColor: '#351556',
   },
 });
 
